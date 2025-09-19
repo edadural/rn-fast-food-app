@@ -64,7 +64,7 @@ export const signIn = async ({ email, password }: SignInParams) => {
   }
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (): Promise<any> => {
   try {
     const currentAccount = await account.get();
     if (!currentAccount) throw Error;
