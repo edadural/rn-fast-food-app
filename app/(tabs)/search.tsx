@@ -1,9 +1,11 @@
 import CardButton from "@/components/CardButton";
+import Filter from "@/components/Filter";
 import MenuCard from "@/components/MenuCard";
+import SearchBar from "@/components/SearchBar";
 import { images } from "@/constans";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppwrite";
-import { MenuItem } from "@/type";
+import { Category, MenuItem } from "@/type";
 import cn from "clsx";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
@@ -27,7 +29,7 @@ const Search = () => {
 
   const { data: categories } = useAppwrite({
     fn: getCategories,
-  });
+  }) as { data: Category[] | null };
 
   useEffect(() => {
     refetch({ category, query, limit: 6 });
@@ -65,20 +67,20 @@ const Search = () => {
                 <View className="flex-center flex-row gap-x-1 mt-0.5">
                   <Text className="paragraph-semibold text-dark-100">
                     Find your favourite food
-                    </Text>
-                    <Image
-                      source={images.arrowDown}
-                      className="size-3"
-                      resizeMode="contain"
-                    />
+                  </Text>
+                  <Image
+                    source={images.arrowDown}
+                    className="size-3"
+                    resizeMode="contain"
+                  />
                 </View>
               </View>
 
               <CardButton />
             </View>
 
-            <Text>Search Input</Text>
-            <Text>Filter</Text>
+            <SearchBar />
+            <Filter categories={categories!} />
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No results</Text>}
