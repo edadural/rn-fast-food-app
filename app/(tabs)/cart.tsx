@@ -1,10 +1,11 @@
 import CardItem from "@/components/CardItem";
 import CustomButton from "@/components/CustomButton";
 import CustomHeader from "@/components/CustomHeader";
+import { images } from "@/constans";
 import { useCartStore } from "@/store/cart.store";
 import { PaymentInfoStripeProps } from "@/type";
 import cn from "clsx";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const PaymentInfoStripe = ({
@@ -45,7 +46,10 @@ const Cart = () => {
         ListHeaderComponent={() => <CustomHeader title="Your Cart" />}
         ListEmptyComponent={() => (
           <View className="flex-1 items-center justify-center">
-            <Text className="text-lg">Your cart is empty</Text>
+            <Text className="text-lg text-gray-200 mb-5">
+              Your cart is empty
+            </Text>
+            <Image source={images.emptyState} resizeMode="contain" />
           </View>
         )}
         ListFooterComponent={() =>

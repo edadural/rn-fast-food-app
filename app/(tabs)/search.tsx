@@ -83,7 +83,23 @@ const Search = () => {
             <Filter categories={categories!} />
           </View>
         )}
-        ListEmptyComponent={() => !loading && <Text>No results</Text>}
+        ListEmptyComponent={() =>
+          !loading && (
+            <>
+              <Image
+                source={images.emptyState}
+                className="size-2/3 mx-auto"
+                resizeMode="contain"
+              />
+              <Text className="text-center text-xl font-quicksand-bold">
+                Nothing matched your search
+              </Text>
+              <Text className="text-center">
+                Try a different search term or check for typos.
+              </Text>
+            </>
+          )
+        }
       />
     </SafeAreaView>
   );
