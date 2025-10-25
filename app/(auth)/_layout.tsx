@@ -15,6 +15,8 @@ import {
 export default function AuthLayout() {
   const { isAuthenticated } = useAuthStore();
 
+  console.log("iss", isAuthenticated);
+
   if (isAuthenticated) return <Redirect href="/" />;
 
   return (

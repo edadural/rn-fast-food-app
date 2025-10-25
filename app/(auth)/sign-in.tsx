@@ -1,12 +1,14 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { signIn } from "@/lib/appwrite";
+import useAuthStore from "@/store/auth.store";
 import * as Sentry from "@sentry/react-native";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import { Alert, Text, View } from "react-native";
 
 const SignIn = () => {
+  const { fetchAuthentication } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     email: "",
@@ -20,9 +22,15 @@ const SignIn = () => {
     }
 
     setIsSubmitting(true);
+      router.replace("/");
+
 
     try {
       await signIn({ email, password });
+
+      await fetchAuthentication();
+      console.log("Signed in successfully");
+
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Error", error.message);

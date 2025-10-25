@@ -62,7 +62,7 @@ export default function Index() {
             </View>
           );
         }}
-        contentContainerClassName="pb-28 px-5"
+        contentContainerClassName="pb-24 px-5"
         ListHeaderComponent={() => (
           <View className="flex-between flex-row w-full my-5">
             <View className="flex-start">

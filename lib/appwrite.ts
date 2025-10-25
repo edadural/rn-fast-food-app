@@ -124,3 +124,12 @@ export const getCategories = async () => {
     throw new Error(error as string);
   }
 };
+
+export const logout = async () => {
+  try {
+    await account.deleteSession("current");
+    return true;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+};

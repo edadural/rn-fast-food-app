@@ -20,6 +20,8 @@ export interface User extends Models.Document {
   name: string;
   email: string;
   avatar: string;
+  phone?: string;
+  address?: string;
 }
 
 export interface CartCustomization {
@@ -53,6 +55,7 @@ interface TabBarIconProps {
   focused: boolean;
   icon: ImageSourcePropType;
   title: string;
+  totalItems?: number;
 }
 
 interface PaymentInfoStripeProps {
@@ -94,6 +97,8 @@ interface CreateUserPrams {
   email: string;
   password: string;
   name: string;
+  phone?: string;
+  address?: string;
 }
 
 interface SignInParams {

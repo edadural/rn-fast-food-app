@@ -42,7 +42,7 @@ const Cart = () => {
           );
         }}
         keyExtractor={(item) => item.id}
-        contentContainerClassName="pb-28 px-5 pt-5"
+        contentContainerClassName="pb-24 px-5 pt-5"
         ListHeaderComponent={() => <CustomHeader title="Your Cart" />}
         ListEmptyComponent={() => (
           <View className="flex-1 items-center justify-center">

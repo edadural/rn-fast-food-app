@@ -18,7 +18,13 @@ const CustomButton = ({
         {isLoading ? (
           <ActivityIndicator size="small" color="white" />
         ) : (
-          <Text className={cn("text-white-100 paragraph-semibold", textStyle)}>
+          <Text
+            className={cn(
+              !textStyle && "text-white-100",
+              "paragraph-semibold",
+              textStyle
+            )}
+          >
             {title}
           </Text>
         )}

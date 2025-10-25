@@ -11,19 +11,21 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    address: "",
   });
 
   const submit = async () => {
-    const { name, email, password } = form;
+    const { name, email, password, phone, address } = form;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !phone || !address) {
       return Alert.alert("Error", "Please fill all the fields");
     }
 
     setIsSubmitting(true);
 
     try {
-      await createUser({ email, password, name });
+      await createUser({ email, password, name, phone, address });
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Error", error.message);
@@ -33,12 +35,24 @@ const SignUp = () => {
   };
 
   return (
-    <View className="gap-8 bg-white rounded-lg p-5 mt-5">
+    <View className="gap-8 bg-white rounded-lg p-5 my-5">
       <CustomInput
         placeholder="Enter your full name"
         value={form.name}
         onChangeText={(text) => setForm((prev) => ({ ...prev, name: text }))}
         label="Full Name"
+      />
+      <CustomInput
+        placeholder="Enter your phone number"
+        value={form.phone}
+        onChangeText={(text) => setForm((prev) => ({ ...prev, phone: text }))}
+        label="Phone Number"
+      />
+      <CustomInput
+        placeholder="Enter your address"
+        value={form.address}
+        onChangeText={(text) => setForm((prev) => ({ ...prev, address: text }))}
+        label="Address"
       />
       <CustomInput
         placeholder="Enter your email"

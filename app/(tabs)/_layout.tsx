@@ -1,11 +1,12 @@
 import { images } from "@/constans";
 import useAuthStore from "@/store/auth.store";
+import { useCartStore } from "@/store/cart.store";
 import { TabBarIconProps } from "@/type";
 import cn from "clsx";
 import { Redirect, Tabs } from "expo-router";
 import { Image, Text, View } from "react-native";
 
-const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
+const TabBarIcon = ({ focused, icon, title, totalItems }: TabBarIconProps) => (
   <View className="tab-icon">
     <Image
       source={icon}
@@ -21,12 +22,21 @@ const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     >
       {title}
     </Text>
+
+    {totalItems !== undefined && totalItems > 0 && (
+      <View className="absolute -top-3 right-3 flex items-center justify-center size-5 bg-primary rounded-full">
+        <Text className="small-bold text-white">{totalItems}</Text>
+      </View>
+    )}
   </View>
 );
 
 export default function TabLayout() {
   const { isAuthenticated } = useAuthStore();
   if (!isAuthenticated) return <Redirect href="/sign-in" />;
+
+  const { getTotalItems } = useCartStore();
+  const totalItems = getTotalItems();
 
   return (
     <Tabs
@@ -41,7 +51,7 @@ export default function TabLayout() {
           marginHorizontal: 20,
           height: 80,
           position: "absolute",
-          bottom: 40,
+          bottom: 30,
           backgroundColor: "white",
           shadowColor: "#1a1a1a",
           shadowOffset: {
@@ -77,7 +87,12 @@ export default function TabLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
+            <TabBarIcon
+              title="Cart"
+              icon={images.bag}
+              focused={focused}
+              totalItems={totalItems}
+            />
           ),
         }}
       />
