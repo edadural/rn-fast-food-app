@@ -3,6 +3,7 @@ import CustomHeader from "@/components/CustomHeader";
 import { icons } from "@/constans";
 import { logout } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
+import { router } from "expo-router";
 import { Alert, Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -32,6 +33,7 @@ const Profile = () => {
     if (result) {
       Alert.alert("Success", "Logout Success");
       refetch({});
+      router.replace("/sign-in");
     } else {
       Alert.alert("Error", "Logout Failed");
     }

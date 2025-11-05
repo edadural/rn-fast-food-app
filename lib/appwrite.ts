@@ -40,6 +40,8 @@ export const createUser = async ({
   email,
   password,
   name,
+  phone,
+  address,
 }: CreateUserPrams) => {
   try {
     const newAccount = await account.create(ID.unique(), email, password, name);
@@ -59,6 +61,8 @@ export const createUser = async ({
         name,
         email,
         avatar: avatarUrl,
+        phone,
+        address,
       }
     );
   } catch (error) {
@@ -68,6 +72,14 @@ export const createUser = async ({
 
 export const signIn = async ({ email, password }: SignInParams) => {
   try {
+    // Mevcut bir oturum varsa onu silmeyi dene.
+    try {
+      await account.deleteSession("current");
+    } catch (e) {
+      console.log("Existing session deleted successfully or not found.");
+    }
+
+    // Yeni oturumu güvenle oluştur.
     const session = await account.createEmailPasswordSession(email, password);
   } catch (error) {
     throw new Error(error as string);

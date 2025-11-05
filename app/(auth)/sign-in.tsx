@@ -8,8 +8,8 @@ import { useState } from "react";
 import { Alert, Text, View } from "react-native";
 
 const SignIn = () => {
-  const { fetchAuthentication } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { fetchAuthenticatedUser } = useAuthStore();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -22,14 +22,12 @@ const SignIn = () => {
     }
 
     setIsSubmitting(true);
-      router.replace("/");
-
 
     try {
       await signIn({ email, password });
 
-      await fetchAuthentication();
       console.log("Signed in successfully");
+      await fetchAuthenticatedUser();
 
       router.replace("/");
     } catch (error: any) {
