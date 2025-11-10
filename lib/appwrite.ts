@@ -137,6 +137,21 @@ export const getCategories = async () => {
   }
 };
 
+export const getMenuItem = async ({ id }: { id: string }) => {
+  try {
+    const result = await databases.getDocument(
+      appwriteConfig.databaseId!,
+      appwriteConfig.menuCollectionId!,
+      id
+    );
+
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error as string);
+  }
+};
+
 export const logout = async () => {
   try {
     await account.deleteSession("current");
