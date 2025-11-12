@@ -22,7 +22,7 @@ This project is built with the following powerful tools, enabling modern and eff
 
 ---
 
-## 🔋 Key Features
+## ✨ Features
 
 The core functionalities of the application include:
 
