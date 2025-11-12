@@ -1,12 +1,7 @@
-# 🍔 Food Delivery App: Full-Stack Food Ordering Mobile Application
-
-## 🤖 Introduction
+# 🍔 Food Delivery App
 
 Built with React Native, **TypeScript**, and **Tailwind CSS**, this full-stack Food Delivery app features dynamic search and filters, cart functionality, and smooth navigation.
-
-Powered by **Appwrite** for backend, database, and file storage, it delivers a responsive, scalable, and intuitive user experience with modern UI/UX best practices.
-
-If you're getting started and need assistance or face any bugs, join our active **Discord** community with over **50k+** members. It's a place where people help each other out.
+Powered by Appwrite for backend, database, and file storage, it delivers a responsive, scalable, and intuitive user experience with modern UI/UX best practices.
 
 ---
 
